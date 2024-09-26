@@ -1,0 +1,159 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/12/2024 12:09:36 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="TRSLAP0639"
+  DTS:CreatorName="TRSLAP0639\DiegoM"
+  DTS:DTSID="{3B667226-C818-40BC-AF7A-E9B2CC8D346D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Tarea FTP"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{3FA774DA-B602-4BAD-8FC9-FCA2AF0B3D88}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones FTP]"
+      DTS:CreationName="FTP"
+      DTS:DTSID="{54D36B0B-F75C-4CDE-AC85-18C017B110AA}"
+      DTS:ObjectName="Administrador de conexiones FTP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="66.220.9.50:21">
+          <DTS:FtpConnection
+            DTS:ServerName="66.220.9.50"
+            DTS:ServerUserName="diegomer4"
+            DTS:UsePassiveMode="False">
+            <DTS:Property
+              DTS:Name="ServerPassword"
+              Sensitive="1"
+              Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAC2Nz2siw0E2MEp3y1LixRwAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAwBop43MX75vuk8Ow8+Z1dh7Vdt0cUTzrLfWuahrl+KQAAAAAOgAAAAAIAACAAAAAjdetTSc69lbcLgOeGDncgGqX0+mem4zdCUrNyZqCg3SAAAAABcVwCO8TEX6MKXzSTq8CU7cTg7OY5xnNYnDgIiUQTrkAAAAAMDcKLOVyg46SNbtGTe5DJV2X/YoSadW7pwi4sTks+bDBAP9BLEmNoIh3IEbCKoDcaqvEl0RdLMhvzRrb06+5v</DTS:Property>
+          </DTS:FtpConnection>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SQL Server Integration Service]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{2E67CC2D-DF7A-4A57-A709-9AF3DFF106A9}"
+      DTS:ObjectName="SQL Server Integration Service">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:FileUsageType="2"
+          DTS:ConnectionString="C:\Users\DiegoM\Documents\Diego\SQL Server Integration Service" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Streaming+Data.csv]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{B16EDF3E-0DE9-41BC-8284-967D89D9DC32}"
+      DTS:ObjectName="Streaming+Data.csv">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="C:\Users\DiegoM\Documents\Diego\SQL Server Integration Service\Streaming+Data.csv" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Descargar Archivo TXT"
+      DTS:CreationName="Microsoft.FtpTask"
+      DTS:Description="Tarea FTP"
+      DTS:DTSID="{48B9160D-BDCB-4656-B130-EB519F5BE24D}"
+      DTS:ExecutableType="Microsoft.FtpTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Descargar Archivo TXT"
+      DTS:TaskContact="FTP Task; Microsoft Corporation; SQL Server 2022; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FtpData
+          ConnectionName="{54D36B0B-F75C-4CDE-AC85-18C017B110AA}"
+          TaskOperationType="Receive"
+          TaskLocalPath="SQL Server Integration Service"
+          TaskRemotePath="/My Documents/SampleText.txt"
+          TaskOverwriteDest="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Enviar Archivo CSV"
+      DTS:CreationName="Microsoft.FtpTask"
+      DTS:Description="Tarea FTP"
+      DTS:DTSID="{D02996C2-BA46-4E4D-93B1-11A88EA8094E}"
+      DTS:ExecutableType="Microsoft.FtpTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Enviar Archivo CSV"
+      DTS:TaskContact="FTP Task; Microsoft Corporation; SQL Server 2022; (c) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FtpData
+          ConnectionName="{54D36B0B-F75C-4CDE-AC85-18C017B110AA}"
+          TaskLocalPath="Streaming+Data.csv"
+          TaskRemotePath="/My Documents"
+          TaskOverwriteDest="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{8E94430B-BDCB-4C05-9B2E-79448088A70E}"
+      DTS:From="Package\Enviar Archivo CSV"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\Descargar Archivo TXT" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Enviar Archivo CSV"
+          TopLeft="75,62" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Descargar Archivo TXT"
+          TopLeft="59,153" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="159,104">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

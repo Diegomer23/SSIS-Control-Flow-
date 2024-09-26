@@ -1,0 +1,67 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/12/2024 1:11:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="TRSLAP0639"
+  DTS:CreatorName="TRSLAP0639\DiegoM"
+  DTS:DTSID="{1745444B-8926-46B2-A3C9-F02FA6577EA2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5556.0"
+  DTS:LocaleID="2058"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{7934B037-8436-4FBF-8207-C9F42DB0EF72}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Administrador de conexiones SMTP]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0A90B81B-1B62-4BD1-BCFD-FCB546C2BBA3}"
+      DTS:ObjectName="Administrador de conexiones SMTP">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=smtp-mail.outlook.com;UseWindowsAuthentication=True;EnableSsl=False;"
+          ConnectByProxy="False" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Tarea Enviar correo"
+      DTS:CreationName="Microsoft.SendMailTask"
+      DTS:Description="Tarea Enviar correo"
+      DTS:DTSID="{DB187C8C-15FA-4B90-97FB-FC947C2A3089}"
+      DTS:ExecutableType="Microsoft.SendMailTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarea Enviar correo"
+      DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData />
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Tarea Enviar correo"
+          TopLeft="94,58" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
